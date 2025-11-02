@@ -4,7 +4,7 @@
     "format:fix": "deno fmt",
     "lint:check": "deno lint",
     "ts:check": "deno check --quiet main.ts src --allow-import",
-    "issues:check": "deno task format:check ; deno task lint:check ; deno task ts:check",
+    "issues:check": "deno task format:check && deno task lint:check && deno task ts:check",
     "deps:cache": "deno install --allow-import",
     "main": "deno --allow-read --allow-write --allow-net --allow-env --allow-import --allow-run --unstable-detect-cjs --unstable-kv --unstable-cron ./main.ts"
   },
