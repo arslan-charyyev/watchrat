@@ -5,12 +5,16 @@ telegram:
 defaultOptions:
   cron: "0 * * * *" # Runs every hour. Check https://crontab.cronhub.io for syntax help
   runOnStartup: true # Check websites as soon as the app starts
+  searchCssSelector: body # Limit search to element matching the selector
+  searchPattern: Keyword1|Keyword2 # Regex pattern searched for in each URL page
 
 websites:
   - name: "Example Website" # Any name works here
     index: https://example.com # Page which will be scanned for URLs
     urlPattern: /news/tech/.+ # Regex filter applied to URLs. Can be absolute or relative.
-    searchPattern: Keyword1|Keyword2 # Regex pattern searched for in each URL page
+    searchMultiple: true # If 'true' - find all matches of the search pattern. If 'false' - stops at first match.
     # All options in defaultOptions can be optionally overridden for each website:
     cron: "0/5 * * * *" # Every 5 minutes
     runOnStartup: false
+    searchCssSelector: .main_body
+    searchPattern: Keyword3|Keyword4

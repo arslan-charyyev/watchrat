@@ -4,6 +4,7 @@ services:
   app:
     # Use locally built image in development
     build: .
+    restart: unless-stopped
 
     # OR
 

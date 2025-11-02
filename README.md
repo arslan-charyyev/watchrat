@@ -31,4 +31,4 @@ The project can be launched via:
 
 - `main` run config in VS Code
 - `deno task main` from the project root
-- `docker compose up` from the project root
+- `docker compose up --build` from the project root

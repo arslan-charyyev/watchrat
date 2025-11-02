@@ -11,32 +11,22 @@ export const TelegramSchema = z.object({
 export const WebsiteOptionsSchema = z.object({
   cron: z.string(),
   runOnStartup: z.boolean(),
+  searchPattern: z.string(),
+  searchCssSelector: z.string(),
 });
 
-export const WebsiteBaseSchema = z.object({
-  ...WebsiteOptionsSchema.partial().shape,
+export const WebsiteSchema = z.object({
   name: z.string(),
-});
-
-// const WebsitePageSchema = WebsiteBaseSchema.extend({
-//   url: z.url(),
-// });
-
-export const WebsiteIndexSchema = WebsiteBaseSchema.extend({
   index: z.url(),
   urlPattern: z.string(),
-  searchPattern: z.string(),
+  searchMultiple: z.boolean(),
+  ...WebsiteOptionsSchema.partial().shape,
 });
-
-// const WebsiteSchema = z.discriminatedUnion("index", [
-//   WebsitePageSchema,
-//   WebsiteIndexSchema,
-// ]);
 
 export const ConfigSchema = z.object({
   telegram: TelegramSchema,
   defaultOptions: WebsiteOptionsSchema,
-  websites: z.array(WebsiteIndexSchema /* WebsiteSchema */),
+  websites: z.array(WebsiteSchema),
 });
 
 const rawConfig = parse(await Deno.readTextFile(env.CONFIG_PATH));
