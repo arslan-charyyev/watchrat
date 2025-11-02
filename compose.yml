@@ -1,0 +1,22 @@
+name: watchrat
+
+services:
+  app:
+    # Use locally built image in development
+    build: .
+
+    # OR
+
+    # Use published image in deployment
+    # image: ghcr.io/arslan-charyyev/watchrat:1.0.0
+
+    volumes:
+      - ./config.yml:/app/config.yml # Mount local config in container
+      - app_data:/app/data # Persist app data in a volume
+
+    environment:
+      CONFIG_PATH: /app/config.yml # Matches the path specified in volumes
+      DB_PATH: /app/data/db.sqlite3 # The directory matches the path specified in volumes
+
+volumes:
+  app_data:

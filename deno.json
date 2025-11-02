@@ -1,0 +1,20 @@
+{
+  "tasks": {
+    "format:check": "deno fmt --check",
+    "format:fix": "deno fmt",
+    "lint:check": "deno lint",
+    "ts:check": "deno check --quiet main.ts src --allow-import",
+    "issues:check": "deno task format:check ; deno task lint:check ; deno task ts:check",
+    "deps:cache": "deno install --allow-import",
+    "main": "deno --allow-read --allow-write --allow-net --allow-env --allow-import --allow-run --unstable-detect-cjs --unstable-kv --unstable-cron ./main.ts"
+  },
+  "imports": {
+    "@b-fuze/deno-dom": "jsr:@b-fuze/deno-dom@^0.1.56",
+    "@std/cache": "jsr:@std/cache@^0.2.0",
+    "@std/dotenv": "jsr:@std/dotenv@^0.225.5",
+    "@std/path": "jsr:@std/path@^1.1.2",
+    "@std/yaml": "jsr:@std/yaml@^1.0.10",
+    "p-retry": "npm:p-retry@^7.1.0",
+    "zod": "npm:zod@^4.1.12"
+  }
+}

@@ -1,0 +1,16 @@
+telegram:
+  botToken: 01234567890:ABCDEFGHIJKLMNOPQRSTUVXYZ # Obtained from @BotFather
+  recipientId: 0123456789 # Visible in Telegram app after enabling the "Show Peer IDs in Profile" option in "Experimental settings"
+
+defaultOptions:
+  cron: "0 * * * *" # Runs every hour. Check https://crontab.cronhub.io for syntax help
+  runOnStartup: true # Check websites as soon as the app starts
+
+websites:
+  - name: "Example Website" # Any name works here
+    index: https://example.com # Page which will be scanned for URLs
+    urlPattern: /news/tech/.+ # Regex filter applied to URLs. Can be absolute or relative.
+    searchPattern: Keyword1|Keyword2 # Regex pattern searched for in each URL page
+    # All options in defaultOptions can be optionally overridden for each website:
+    cron: "0/5 * * * *" # Every 5 minutes
+    runOnStartup: false
