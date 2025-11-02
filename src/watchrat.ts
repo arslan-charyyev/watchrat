@@ -7,7 +7,7 @@ import retry from "p-retry";
 
 async function visitUrl(
   url: string,
-  website: z.infer<typeof WebsiteSchema>
+  website: z.infer<typeof WebsiteSchema>,
 ): Promise<string[]> {
   console.log(`  Visiting URL ${url}`);
 
@@ -17,8 +17,8 @@ async function visitUrl(
       const text = await res.text();
       const dom = new JSDOM(text);
       const doc = dom.window.document;
-      const cssSelector =
-        website.searchCssSelector ?? appConfig.defaultOptions.searchCssSelector;
+      const cssSelector = website.searchCssSelector ??
+        appConfig.defaultOptions.searchCssSelector;
       const searchRoot = doc.querySelector(cssSelector);
       if (searchRoot) {
         return searchRoot;
@@ -26,7 +26,7 @@ async function visitUrl(
         throw new Error(`CSS selector "${cssSelector}" not found in ${url}`);
       }
     },
-    { retries: 3 }
+    { retries: 3 },
   );
 
   // Remove hidden content to avoid duplication
@@ -35,8 +35,8 @@ async function visitUrl(
   }
 
   const renderedText = searchRoot.textContent;
-  const searchPattern =
-    website.searchPattern ?? appConfig.defaultOptions.searchPattern;
+  const searchPattern = website.searchPattern ??
+    appConfig.defaultOptions.searchPattern;
   const searchRegex = new RegExp(searchPattern, "gi");
 
   if (website.searchMultiple) {
